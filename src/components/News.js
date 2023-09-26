@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import PropTypes from "prop-types";
+import InfiniteScroll from "react-infinite-scroll-component";
 export class News extends Component {
    capitalizeFirstLetter = (string)=>{
       return string.charAt(0).toUpperCase() +string.slice(1)
@@ -17,7 +18,7 @@ export class News extends Component {
       country: PropTypes.string,
       pageSize: PropTypes.number,
       category: PropTypes.string,
-      search: PropTypes.func
+      search: PropTypes.string,
       
    };
    //   defynng constructor
@@ -28,6 +29,7 @@ export class News extends Component {
          loading: false,
          page: 1,
          search:'',
+         totalResults: 0,
       };
       document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewSify`
    }
@@ -69,15 +71,38 @@ export class News extends Component {
       })
       this.updateNews(-1);
    };
+  fetchMoreData=async()=>{
+   this.setState({
+      page: this.state.page + 1
+   })
+      let url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=0893fe334c98459b9729623e83cff16e&page=${this.state.page + 1}&pageSize=${this.props.pageSize}&q=${this.props.search}`;
+      // this.setState({ loading: true });
+      let data = await fetch(url);
+      var parsedData = await data.json();
+      console.log(parsedData);
+      this.setState({
+         articles: this.state.articles.concat(parsedData.articles),
+         loading: false,
+         totalResults: parsedData.totalResults,
+      }) //setting state from fetched data  
+   };
    render() {
       return (
          // returning the cards dynamically along with props
-         <div className="container my-3">
+         <>
             <h1 className="text-center">Newsify - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
             {this.state.loading && <Spinner />}
+            <InfiniteScroll
+               dataLength={this.state.articles.length}
+               next={this.fetchMoreData}
+               // style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+               // inverse={true} //
+               hasMore={this.state.articles.length !== this.state.totalResults}
+               loader={<Spinner/>}
+               >
+                  <div className="container">
             <div className="row">
-               {!this.state.loading &&
-                  this.state.articles.map(function (e) {
+               {this.state.articles.map(function (e) {
                      return (
                         <div className="col-md-4 my-2" key={e.url}>
                            <NewsItem
@@ -95,7 +120,9 @@ export class News extends Component {
                      );
                   })}
             </div>
-            <div className="container d-flex justify-content-around">
+            </div>
+            </InfiniteScroll>
+            {/* <div className="container d-flex justify-content-around">
                <button
                   disabled={this.state.page <= 1}
                   type="buttom"
@@ -117,8 +144,8 @@ export class News extends Component {
                >
                   Next &rarr;
                </button>
-            </div>
-         </div>
+            </div> */}
+         </>
       );
    }
 }
