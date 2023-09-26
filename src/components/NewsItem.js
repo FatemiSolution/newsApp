@@ -11,7 +11,7 @@ export class NewsItem extends Component {
         <div className="card" style={{ min_width: "100%" }}>
             <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"style={{left:'90%',zIndex:1}}>
               {source}
-              <span class="visually-hidden">unread messages</span>
+              <span className="visually-hidden">unread messages</span>
             </span>
           <img
             src={imageUrl}
@@ -24,7 +24,7 @@ export class NewsItem extends Component {
             <h5 className="card-title">{title}...</h5>
             <p className="card-text">{description}...</p>
             <p className="card-text">
-              <small class="text-body-secondary">
+              <small className="text-body-secondary">
                 {" "}
                 {author != null ? "By " + author : ""} on{" "}
                 {new Date(publishedAt).toGMTString()}
