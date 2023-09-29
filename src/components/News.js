@@ -28,15 +28,16 @@ export class News extends Component {
          articles: [],
          loading: false,
          page: 1,
-         search:'',
          totalResults: 0,
       };
       document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewSify`
    }
    //  fetching url and parsing it
    async updateNews(pageNo = 0){
+      this.props.setProgress(10)
       let url = `https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=${this.props.country}&apiKey=0893fe334c98459b9729623e83cff16e&page=${this.state.page + pageNo}&pageSize=${this.props.pageSize}&q=${this.props.search}`;
       let data = await fetch(url);
+      this.props.setProgress(30)
       this.setState({ loading: true });
       var parsedData = await data.json();
       console.log(parsedData);
@@ -49,6 +50,7 @@ export class News extends Component {
             totalResults: parsedData.totalResults,
          });
       }
+      this.props.setProgress(100)
    }
    async componentDidMount() {
      

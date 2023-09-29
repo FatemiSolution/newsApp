@@ -9,10 +9,18 @@ export class NewsItem extends Component {
       // format for the card froom bootstrap
       <div className="my-4">
         <div className="card" style={{ min_width: "100%" }}>
-            <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger"style={{left:'90%',zIndex:1}}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              position: "absolute",
+              right: "0",
+            }}
+          >
+            <span className="  badge rounded-pill bg-danger">
               {source}
-              <span className="visually-hidden">unread messages</span>
             </span>
+          </div>
           <img
             src={imageUrl}
             width={150}

@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom'
 export class Navbar extends Component {
 
   render() {
-    const handleOnChange = (event)=>{
-      setSearch(event.target.value)
+  
+     let handleOnChange=(event)=>{
+      this.props.setSearch(event.target.value)
       console.log(event.target.value)
- }
-let {setSearch} = this.props
+    }
+     
+    
     return (
       <>
 <nav className="navbar navbar-expand-lg navbar-dark bg-body-primary sticky-top"style={{backgroundColor:' #6499E9'}} >
@@ -28,11 +30,10 @@ let {setSearch} = this.props
           <li className="nav-item"><Link id='Sports' className="nav-link" to="/sports">Sports</Link></li>
           <li className="nav-item"><Link id='technology' className="nav-link" to="/technology">Technology</Link></li>
       </ul>   
-    </div>
     <form className="d-flex" role="search">
         <input className="form-control me-2" onChange={handleOnChange} type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-light"  type="submit">Search</button>
-      </form>
+        </form>
+    </div>
   </div>
 </nav>
       </>
