@@ -71,7 +71,7 @@ const News = (props) => {
   return (
     // returning the cards dynamically along with props
     <>
-      <h1 className="text-center">
+      <h1 className="text-center my-2" style={{ color: `${props.Mode==='light'?'black':'white'}` }}>
         Newsify - Top {capitalizeFirstLetter(props.category)} Headlines
       </h1>
       {loading && <Spinner />}
@@ -98,6 +98,7 @@ const News = (props) => {
                     publishedAt={e.publishedAt}
                     author={e.author}
                     source={e.source.name}
+                    Mode={props.Mode}
                   />
                 </div>
               );

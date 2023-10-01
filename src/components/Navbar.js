@@ -10,8 +10,8 @@ const Navbar = (props) => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-dark bg-body-primary sticky-top"
-        style={{ backgroundColor: " #6499E9" }}
+        className={`navbar navbar-expand-lg navbar-${props.Mode==='light'?'light':'dark'} bg-body-primary sticky-top`}
+        style={{ backgroundColor: `${props.Mode==='light'?' #6499E9':'black'}` }}
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
@@ -84,6 +84,10 @@ const Navbar = (props) => {
                 aria-label="Search"
               />
             </form>
+          <div className={`form-check form-switch text-${props.Mode==='light'?'dark':'light'}`}>
+            <input className="form-check-input" onClick={()=>{props.toggleMode()}} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
+      </div>
           </div>
         </div>
       </nav>

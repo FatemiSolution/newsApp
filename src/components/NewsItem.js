@@ -7,7 +7,7 @@ const NewsItem = (props) => {
   return (
     // format for the card froom bootstrap
     <div className="my-4">
-      <div className="card" style={{ min_width: "100%" }}>
+      <div className="card" style={{ min_width: "100%",color: `${props.Mode==='light'?'black':'white'}`,backgroundColor: `${props.Mode==='light'?'white':'#454545'}` }}>
         <div
           style={{
             display: "flex",
@@ -28,14 +28,14 @@ const NewsItem = (props) => {
         <div className="card-body">
           <h5 className="card-title">{title}...</h5>
           <p className="card-text">{description}...</p>
-          <p className="card-text">
-            <small className="text-body-secondary">
+          <p className="card-text" >
+            <small  style={{color: `${props.Mode==='light'?'#3C4048':'#B2B2B2'}`}}>
               {" "}
               {author != null ? "By " + author : ""} on{" "}
               {new Date(publishedAt).toGMTString()}
             </small>
           </p>
-          <a href={newsUrl} className="btn btn-sm btn-primary">
+          <a href={newsUrl} className={`btn btn-sm btn-${props.Mode==='light'?'primary':'dark'}`}>
             Read more
           </a>
         </div>
