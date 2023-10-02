@@ -32,7 +32,7 @@ document.body.style.backgroundColor ='white'
 }
     return (
       <div>
-        <Router basename="/newsApps">
+        <Router >
           <Navbar setSearch={setSearch} toggleMode={toggleMode} Mode={mode}  />
           <LoadingBar 
             height= {3}
@@ -41,15 +41,15 @@ document.body.style.backgroundColor ='white'
           />
           <Routes>
           
-           <Route exact path="/newsApps" element={ <News setProgress ={setProgress} apiKey={apiKey}  key = "general" pageSize={ 15} country={"in"} category="general" search={search}  Mode={mode}  />}/>
-           <Route exact path="/newsApps/general" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "home" pageSize={ 15} country={"in"} category="general" search={search}  Mode={mode}  />}/>
-           <Route exact path="/newsApps/business" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "business" pageSize={15} country={"in"} category="business" search={search}  Mode={mode} />}/>
-           <Route exact path="/newsApps/entertainment" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "entertainment" pageSize={15} country={"in"} category="entertainment" search={search}  Mode={mode} />}/>
-           <Route exact path="/newsApps/health" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "health" pageSize={15} country={"in"} category="health" search={search}  Mode={mode} />}/>
-           <Route exact path="/newsApps/science" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "science" pageSize={15} country={"in"} category="science" search={search}  Mode={mode} />}/>
-           <Route exact path="/newsApps/sports" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "sports" pageSize={15} country={"in"} category="sports" search={search}  Mode={mode} />}/>
-           <Route exact path="/newsApps/technology" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "technology" pageSize={15} country={"in"} category="technology" search={search}  Mode={mode} />}/>
-           <Route exact path="/newsApps/sports" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "sports" pageSize={15} country={"in"} category="sports" search={search}  Mode={mode} />}/>
+           <Route exact path="/" element={ <News setProgress ={setProgress} apiKey={apiKey}  key = "general" pageSize={ 15} country={"in"} category="general" search={search}  Mode={mode}  />}/>
+           <Route exact path="/general" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "home" pageSize={ 15} country={"in"} category="general" search={search}  Mode={mode}  />}/>
+           <Route exact path="/business" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "business" pageSize={15} country={"in"} category="business" search={search}  Mode={mode} />}/>
+           <Route exact path="/entertainment" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "entertainment" pageSize={15} country={"in"} category="entertainment" search={search}  Mode={mode} />}/>
+           <Route exact path="/health" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "health" pageSize={15} country={"in"} category="health" search={search}  Mode={mode} />}/>
+           <Route exact path="/science" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "science" pageSize={15} country={"in"} category="science" search={search}  Mode={mode} />}/>
+           <Route exact path="/sports" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "sports" pageSize={15} country={"in"} category="sports" search={search}  Mode={mode} />}/>
+           <Route exact path="/technology" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "technology" pageSize={15} country={"in"} category="technology" search={search}  Mode={mode} />}/>
+           <Route exact path="/sports" element={ <News setProgress ={setProgress} apiKey={apiKey} key = "sports" pageSize={15} country={"in"} category="sports" search={search}  Mode={mode} />}/>
           </Routes>
         </Router>
       </div>
